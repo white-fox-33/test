@@ -1,51 +1,48 @@
-
-<!--Delar upp sidan i två delar-->
-<main>
-  <div>
-
-    <h1 class="name">Förnamn Efternamn </h1>
-    <h2>Här har jag samlat min uppgifter jag gjort i samband med webbutveckling i årskurs 2 på Maja Beskowgymnasiet!</h2>
-    <h3>Inspirerade citat för min webbutvecklingsresa:</h3>
-    <!--Under denna kommer vi lägga till fler element-->
-
-  </div>
-    <!--Här kommer vi lägga till en bild senare i uppgiften 1.2.4 Extra styling-->  
-
-</main>
-
-<style>
-  main{
-    /*Styling för att dela upp sidan i två delar. */
-    /*Vi kommer gå igenom detta i detalj senare*/
-    margin: auto;
-    width: 80vw;
-    height: 70vh;
-    display: grid;
-    grid-template-columns: repeat(2,50%);
-    overflow: hidden;
-  }
-
-
+<script>
+    let image = "https://picsum.photos/id/70/367/267"
+    let photo = "https://picsum.photos/id/88/367/267"
+    let picture = "https://picsum.photos/id/93/367/267"
+</script>
   
-h1{
-    color:grey;
-}
-h2{
-    color: rgb(255, 165, 0);
-}
-h3{
-    color: #3cb371;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.name{
-    font-family:'Gill Sans';
-    font-size: 50px;
-}
-    
-  div{
-    /*Styling för att centrera texten i behållaren*/
-    margin: auto;
-  }
+  <div class="photos">
+    <div class="image-wrapper">
+      <img src={image} alt="Flexbox egenskaper">
+    </div>
+    <div class="image-wrapper">
+      <img src={photo} alt="Exempelbild 2">
+    </div>
+    <div class="image-wrapper">
+      <img src={picture} alt="Exempelbild 3">
+    </div>
+  </div>
+  
+  <style>
+    /* Flex-container för .photos */
+    .photos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+  
+    /* Styling för image-wrapper */
+    .image-wrapper {
+      flex-grow: 1;
+      margin: 10px;
+    }
+  
+    /* Anpassa storleken på bilderna */
+    .image-wrapper img {
+      width: 300px;
+    }
+  
+    /* Interaktionseffekter */
+    .image-wrapper:hover {
+      flex-grow: 2;
+    }
+  
+    .image-wrapper:active {
+      transform: scale(0.9);
+    }
   </style>
+  

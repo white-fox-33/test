@@ -4,7 +4,7 @@
 </p>
 
 <p style="background-color:pink">
-    "Every great developer you know got there by solving problems they were <block>bro</block> unqualified to solve until they actually did it." - <span>Patrick McKenzie, software engineer and entrepreneur</span>.
+    "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it." - <span>Patrick McKenzie, software engineer and entrepreneur</span>.
 </p>
 .
 .

@@ -1,28 +1,30 @@
 <script>
+    import {goto} from '$app/navigation';
+    import { onMount } from 'svelte';
+    
+
     let search = '';
     let activefocus = true;
+
     $: search = search.toLowerCase();
+    let searches   =[]
+    onMount(()=> {
+        searches = JSON.parse(sessionStorage.getItem('recentSearches')) || [];
+    })  
 
-    function saveSearch() {
-        let searches = JSON.parse(sessionStorage.getItem('recentSearches')) || [];
-        if (!searches.includes(search)) {
-            searches = [search, ...searches].slice(0, 5);
-            sessionStorage.setItem('recentSearches', JSON.stringify(searches));
+    function Search() {
+        goto(`/search/${search}`);
     }
-  }
-
-    function goToSearch() {
-        goto(`/search/${recent}`);
-    }
+        
 </script>
 
 <div id="search-placeholder">
-    <button id="search" on:click={goToSearch()}>
+    <button id="search" on:click={Search}>
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 2.75a7.25 7.25 0 015.63 11.82l4.9 4.9a.75.75 0 01-.98 1.13l-.08-.07-4.9-4.9A7.25 7.25 0 1110 2.75zm0 1.5a5.75 5.75 0 100 11.5 5.75 5.75 0 000-11.5z"></path>
         </svg>
     </button>
-    <form action="/search/{search}" method="post" on:submit|preventDefault={saveSearch}>
+    <form on:submit|preventDefault={Search}>
         <input
             type="text"
             placeholder="Sök upp en Pokémon"
@@ -37,13 +39,16 @@
 <h1>
     Senaste sökningar
 </h1>
-<footer>
-    {#each JSON.parse(sessionStorage.getItem('recentSearches') || '[]') as recent}
-      <a href={`/search/${recent}`}>{recent}</a>
-    {/each}
-    <button on:click={() => sessionStorage.clear()}>Rensa sökhistorik</button>
-</footer>
+    
 
+    
+
+<footer>
+    {#each searches  as recent}
+        <a href={`/search/${recent.name}`}>{recent.name}</a>
+    {/each}
+    <button on:click={() =>{ sessionStorage.clear(); location.reload()}}>Rensa sökhistorik</button>
+</footer>
 <style>
     form {
         display: flex;
@@ -63,7 +68,7 @@
         border: none;
     }
 
-    input:focus{
+    input:focus {
         border-color: white;
         box-shadow: 0 0 0px white;
     }
@@ -85,7 +90,6 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-items: start;
         border-radius: 20px;
         padding: 0 10px;
     }
@@ -96,32 +100,32 @@
     }
 
     footer {
-    margin-top: 10px;
-    width: 50%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    padding: 0.5em;
-  }
+        margin-top: 10px;
+        width: 50%;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding: 0.5em;
+    }
 
-  a {
-    text-decoration: none;
-    padding: 0.5em;
-    transition: transform 0.2s, background 0.2s;
-    color: black;
-  }
+    a {
+        text-decoration: none;
+        padding: 0.5em;
+        transition: transform 0.2s, background 0.2s;
+        color: black;
+    }
 
-  a:hover {
-    background: #ffcc00;
-    transform: scale(1.05);
-  }
+    a:hover {
+        background: #ffcc00;
+        transform: scale(1.05);
+    }
 
-  h1{
-    color:black;
-  }
+    h1 {
+        color: black;
+    }
 
-  button{
-    color:black;
-  }
+    button {
+        color: black;
+    }
 </style>

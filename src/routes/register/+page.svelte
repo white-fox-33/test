@@ -67,9 +67,7 @@
         </select>
   
         <input type="submit" value="Registrera" />
-        <ref>
-            <a href="{base}/login" title="Logga in">Logga in</a>
-        </ref>
+        <a href="{base}/login" title="Logga in">Logga in</a>
       </form>
     </div>
   </main>
@@ -78,7 +76,7 @@
     main {
       background-image: url("https://t4.ftcdn.net/jpg/05/21/65/59/360_F_521655929_N80d5GaCQJ2VP073PfTXJTe9mkvsNtHE.jpg");
       background-size: cover;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
       padding: 5%;
       min-height: 630px;
@@ -132,8 +130,5 @@
       background-color: #562c3b;
     }
 
-    ref{
-        align-items: center;
-    }
   </style>
   
